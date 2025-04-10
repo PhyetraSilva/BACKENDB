@@ -1,2 +1,2 @@
-let numero = 22;
+let numero = 20;
 console.log(typeof numero);
