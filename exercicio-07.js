@@ -1,2 +1,3 @@
-let idade = 15;
-console.log(idade >= 18 ? "Maior de idade" : "Menor de idade");
+let idade = 20;
+console.log(idade >=18? " maior de idade, tendo " + idade + " anos " : " menor de idade, tendo " + idade + " anos " );
+
