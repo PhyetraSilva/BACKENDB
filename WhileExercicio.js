@@ -1,42 +1,99 @@
 import rl from 'readline-sync';
-//01. Escreva um programa que peça ao usuário para digitar um número e, em seguida,
-//imprima a tabuada desse número usando um loop while.
+//01.
+
 let num = rl.questionInt("Informe um número: ");
+
 let cont = 1;
 while (cont <= 10) {
     console.log(`${num} x ${cont} = ${num * cont}`);
     cont++;
 } 
-//02. Escreva um programa que tem por finalidade calcular a Média Geral de uma Turma de
-//alunos.
-//O Programa deverá:
-//Ler o número de alunos da turma;
-//Ler as notas dos 4 bimestres de cada aluno;
-//Calcular e imprimir a média do aluno;
-//Calcular e imprimir a média da turma
 
-//03. a) Escreva um programa que simule um jogo de adivinhação
-//onde o usuário deve adivinhar um número aleatório entre 1 e 100.
-//O programa deve fornecer dicas sobre se o número digitado é
-//maior ou menor que o número aleatório. O jogo deve continuar até
-//que o usuário adivinhe corretamente.
+//02.
 
-//04. Escreva um programa que calcule e imprima os primeiros 20 números da sequência de Fibonacci.
+let numAlunos = rl.questionInt("Informe o número de alunos: ");
+let somaMedias = 0;
+let contadorAluno = 1;
 
-//05. Crie um algoritmo leia um nome e o salário bruto de 10 pessoas. Calcule e imprima o nome e o
-//valor de imposto de renda a ser pago.
-//Calcule o total de Imposto de Renda a ser pago conforme a tabela abaixo:
-//Salário <= R$ 2.100,00 = isento
-//Salário <= R$ 2.800,00 = 7,5%
-//Salário <= R$ 3.750,00 = 15%
-//Salário <= R$ 4.660,00 = 22.5%
-//Salário > R$ 4.660,00 = 27.5%
+while (contadorAluno <= numAlunos) {
+    console.log(`Aluno ${contadorAluno}:`);
 
-//6. Escreva um programa que itere sobre as propriedades
-//de um objeto e imprima suas chaves e valores.
-//7. Escreva um programa que itere sobre os elementos de um
-//array e imprima seus valores.
-//8. Escreva um programa que itere sobre os caracteres de uma
-//string e imprima cada caractere.
+    let somaNotas = 0 
+    let contadorBimestre = 1;
 
+    while (contadorBimestre <= 4) {
+        let nota = rl.questionInt(`Informe a nota do ${contadorBimestre}º bimestre parao Aluno ${contadorAluno}: `)
+        somaNotas = somaNotas + nota;
+        contadorBimestre++;
+    }
+    let mediaAluno = somaNotas/4;
+    somaMedias = somaMedias + mediaAluno;
 
+    console.log(`Média do Aluno ${contadorAluno}: ${mediaAluno.toFixed(2)}`);
+    contadorAluno++;
+}
+
+let mediaGeralTurma = somaMedias / numAlunos;
+console.log(`Média geral da truma: ${mediaGeralTurma.toFixed(2)}`);
+
+//03.
+const numAleatorio = Math.floor(Math.random()*100)+1;
+
+let tentativa;
+
+do {
+  tentativa = rl.questionInt("Tente adivinhar o número (entre 1 e 100): ");
+    if (tentativa ===  numAleatorio) {
+    console.log("Parabens você adivinhou o número.");
+    } else if(tentativa < numAleatorio) {
+        console.log("Tente um número maior.");
+    }else{
+        console.log("Tente um número menor.");
+    }
+} while (tentativa !== numAleatorio);
+
+//04.
+
+    for (let i = 1; i <=10; i++){
+    let nome = rl.question(`Infrome o nome da ${i}ª pessoa: `);
+    let salario = rl.questionFloat(`Infrome o salário de ${nome}: `);    
+
+    let ir =0;
+    if (salario <= 2100) {
+        ir = 0;
+    } else if (salario <=2800) {
+        ir = salario * 0.075;
+    }else if(salario <= 3750) {
+        ir = salario * 0.15;
+    }else if (salario <= 4660) {
+        ir = salario * 0.275;
+    }else {
+        ir = salario * 0.275;
+    }
+    console.log(`\n---Imposto de Renda Devido---`);
+    console.log(`Nome: ${nome} \nImposto de Renda: R$ ${ir.toFixed(2)}\n `);
+}
+
+//05
+
+const pessoa = {
+  nome: "Carlos Eduardo dos Santos",
+  dtNasc: "22/02/2002",
+  cpf: 88234512045,
+  sexo: 'M'
+}
+
+//console.log(pessoa)
+//console,log("Nome: " + pessoa.nome);
+for (const key in pessoa) {
+  console.log(`${key}: ${pessoa[key]}`);
+
+}
+
+const cores = ["Branco", "Azul", "Verde", "Preto", "Roxo", "Amarelo"];
+let valores = "";
+for (const elemento of cores) {
+
+    valores += elemento + ",";
+}
+console.log(valores)
